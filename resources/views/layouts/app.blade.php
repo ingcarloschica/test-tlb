@@ -7,10 +7,9 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Contact List System') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -18,7 +17,10 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+
+
 </head>
 <body>
     <div id="app">
@@ -80,10 +82,15 @@
 
         <main class="py-4">
             <div class="container">
-            @yield('content')
-        </div>
+                @yield('content')
+            </div>
         </main>
     </div>
-    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+        
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
+    
+    @yield('addscript')
 </body>
 </html>

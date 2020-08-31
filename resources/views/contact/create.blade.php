@@ -52,8 +52,8 @@
                               
                               
                               <hr>
-                              <button class="btn btn-primary" type="submit" value="Save"><i class="fas fa-save"></i> Guardar</button>
-                               | <a class="btn btn-success" href="{{route('home')}}"><i class="fas fa-arrow-circle-left"> </i> Volver</a>
+                              <button class="btn btn-primary" type="submit" value="Save"><i class="fas fa-save"></i> Save</button>
+                               | <a class="btn btn-success" href="{{route('home')}}"><i class="fas fa-arrow-circle-left"> </i> Back</a>
 
                         </div>
 
@@ -74,6 +74,6 @@ $(document).ready(function() {
 });
 
 @endsection
-@section('others')
+@section('addscript')
   <script src="{{ asset('js/select2.full.min.js') }}"></script>
 @endsection
