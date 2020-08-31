@@ -13,9 +13,7 @@
 
 
                 <div class="card card-outline card-info">
-                    <div class="card-header">
-                        <h4>Lista de Categorías</h4>
-                    </div>
+         
     
                     <div class="card-body">
                         <a class="btn btn-outline-primary float-right" href="{{ route('contact.create') }}">Create</a>
