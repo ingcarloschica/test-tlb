@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\sendmail;
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
@@ -43,10 +45,15 @@ class ContactController extends Controller
         ]);
 
         $contact = Contact::create($request->all());
+
+        //send mail
+        $msg="We added you in our contact list. Thank you";
+        $this->sendmail($request->email, $msg);
+
+        
         return redirect()->route('home')
             ->with('status_success','Contact saved successfully'); 
 
-            
     }
 
     /**
@@ -108,4 +115,9 @@ class ContactController extends Controller
             return redirect()->route('home')
             ->with('status_success','Contact successfully removed');
     }
+
+    public function sendmail($email, $msg){
+        Mail::to($email)->send(new sendmail($msg));
+    }
+
 }

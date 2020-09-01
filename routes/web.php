@@ -25,3 +25,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/contacts','ContactController')->names('contact');
 
 Route::resource('/user', 'UserController',['except'=>['create','store']])->names('user');
+
+Route::post('/sendmail', 'EmailController@contact')->name('contact');
