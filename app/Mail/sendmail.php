@@ -11,6 +11,7 @@ class sendmail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $subjet = 'Added Contact';
     public $msg;
 
     /**
@@ -32,6 +33,7 @@ class sendmail extends Mailable
      */
     public function build()
     {
-        return $this->html($this->msg);
+        return $this->html($this->msg)
+                    ->subject($this->subjet);
     }
 }

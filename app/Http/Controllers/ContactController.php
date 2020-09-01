@@ -117,7 +117,7 @@ class ContactController extends Controller
     }
 
     public function sendmail($email, $msg){
-        Mail::to($email)->send(new sendmail($msg));
+        Mail::to($email)->queue(new sendmail($msg));
     }
 
 }

@@ -61,7 +61,7 @@
                               
                               <hr>
                               
-                               <a class="btn btn-primary" href="{{route('contact.edit',$contact->id)}}"><i class="fas fa-arrow-circle-left"> </i> Edit</a>
+                               <a class="btn btn-primary" href="{{route('contact.edit',$contact->id)}}"><i class="far fa-edit"></i> Edit</a>
                                | <a class="btn btn-success" href="{{route('home')}}"><i class="fas fa-arrow-circle-left"> </i> Back</a>
 
                         </div>
