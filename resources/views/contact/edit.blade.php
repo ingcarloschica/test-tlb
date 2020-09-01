@@ -6,16 +6,17 @@
 
             <div class="card card-outline card-info">
                 <div class="card-header">
-                    <h4>New Contact</h4>
+                    <h4>Edit Contact</h4>
                 </div>
 
                 <div class="card-body">
                    
-                  @include('custom.message')
+                    @include('custom.message')
 
                     
-                    <form action="{{ route('contact.store') }}" method="POST">
+                    <form action="{{ route('contact.update', $contact->id) }}" method="POST">
                         @csrf
+                        @method('PUT')
                         
                         <div class="container">
 
@@ -24,40 +25,41 @@
                                     <label for="firstname">First Name</label>
                                     <input type="text" class="form-control" 
                                       name="firstname" 
-                                      id="firstname" required
-                                      value={{ old('firstname')}}>
+                                      id="firstname"
+                                      value="{{ old('firstname', $contact->firstname) }}">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="lastname">Last Name</label>
                                     <input type="text" class="form-control" 
                                       name="lastname" 
-                                      id="lastname" required
-                                      value={{ old('lastname')}}>
+                                      id="lastname"
+                                      value="{{ old('lastname', $contact->lastname) }}">
                                 </div>
                               </div>
 
                               <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="email">Email</label>
-                                <input type="email" class="form-control" 
-                                  name="email" 
-                                  id="email" required
-                                  value={{ old('email')}}>
+                                    <input type="email" class="form-control" 
+                                    name="email" 
+                                    id="email"
+                                    value="{{ old('email', $contact->email) }}">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="contactnumber">Contact Number</label>
-                                <input type="text" class="form-control" 
-                                  name="contactnumber" 
-                                  id="contactnumber" required
-                                  value={{ old('contactnumber')}}>
+                                    <input type="text" class="form-control" 
+                                    name="contactnumber" 
+                                    id="contactnumber"
+                                    value="{{ old('contactnumber', $contact->contactnumber) }}">
                                 </div>
                               </div>
 
                               
                               
                               <hr>
-                              <button class="btn btn-primary" type="submit" value="Save"><i class="fas fa-save"></i> Save</button>
-                               | <a class="btn btn-success" href="{{route('home')}}"><i class="fas fa-arrow-circle-left"> </i> Back</a>
+                              
+                              <button class="btn btn-primary" type="submit" value="save"><i class="fas fa-save"> </i> Save</button>
+                              | <a class="btn btn-success" href="{{route('home')}}"><i class="fas fa-arrow-circle-left"> </i> Back</a>
 
                         </div>
 

@@ -14,7 +14,6 @@ class ContactController extends Controller
      */
     public function index()
     {
-        ;
         return view('home');
     }
 
@@ -44,8 +43,10 @@ class ContactController extends Controller
         ]);
 
         $contact = Contact::create($request->all());
-        return redirect()->route('home');
-            /* ->with('status_success','Role saved successfully'); */
+        return redirect()->route('home')
+            ->with('status_success','Contact saved successfully'); 
+
+            
     }
 
     /**
@@ -54,9 +55,10 @@ class ContactController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Contact $contact)
     {
-        //
+        //return ($contact);
+        return view ('contact.show', compact('contact'));
     }
 
     /**
@@ -65,9 +67,9 @@ class ContactController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Contact $contact)
     {
-        //
+        return view('contact.edit', compact('contact'));
     }
 
     /**
@@ -77,9 +79,21 @@ class ContactController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Contact $contact)
     {
-        //
+        $request->validate([
+            'firstname'          => 'required|max:50',
+            'lastname'           => 'required|max:50',
+            'contactnumber'      => 'required',
+            'email'              => 'required|max:50|unique:contacts,email,'.$contact->id,
+        ]);
+
+        //return $request;
+
+        $contact->update($request->all());
+        
+        return redirect()->route('home')
+            ->with('status_success','Contact updated successfully');
     }
 
     /**
@@ -88,8 +102,10 @@ class ContactController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Contact $contact)
     {
-        //
+        $contact->delete();
+            return redirect()->route('home')
+            ->with('status_success','Contact successfully removed');
     }
 }
