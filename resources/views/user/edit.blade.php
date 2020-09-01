@@ -12,9 +12,8 @@
                 <div class="card-body">
                    
                     @include('custom.message')
-
                     
-                    <form action="{{ route('contact.update', $contact->id) }}" method="POST">
+                    <form action="{{ route('user.update', $user->id) }}" method="POST">
                         @csrf
                         @method('PUT')
                         
@@ -22,19 +21,13 @@
 
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="firstname">First Name</label>
+                                    <label for="name">Name</label>
                                     <input type="text" class="form-control" 
-                                      name="firstname" 
-                                      id="firstname" required
-                                      value="{{ old('firstname', $contact->firstname) }}">
+                                      name="name" 
+                                      id="name" required
+                                      value="{{ old('name', $user->name) }}">
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <label for="lastname">Last Name</label>
-                                    <input type="text" class="form-control" 
-                                      name="lastname" 
-                                      id="lastname" required
-                                      value="{{ old('lastname', $contact->lastname) }}">
-                                </div>
+                              
                               </div>
 
                               <div class="form-row">
@@ -43,14 +36,14 @@
                                     <input type="email" class="form-control" 
                                     name="email" 
                                     id="email" required
-                                    value="{{ old('email', $contact->email) }}">
+                                    value="{{ old('email', $user->email) }}">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="contactnumber">Contact Number</label>
-                                    <input type="text" class="form-control" 
-                                    name="contactnumber" 
-                                    id="contactnumber" required
-                                    value="{{ old('contactnumber', $contact->contactnumber) }}">
+                                    <label for="password">Password</label>
+                                    <input type="password" class="form-control" 
+                                    name="password" 
+                                    id="password" required
+                                    value="{{ old('password')}}">
                                 </div>
                               </div>
 

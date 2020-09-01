@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Symfony\Component\Console\Input\Input;
 
 class UserController extends Controller
 {
@@ -56,7 +60,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find(Auth::User()->id);
+        return view('user.edit', compact('user'));
     }
 
     /**
@@ -66,9 +71,24 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $request->validate([
+            'name'          => 'required|max:50',
+            'email'         => 'required|max:50|unique:users,email,'.$user->id,
+            'password'      => 'required|max:50',
+        ]);
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+
+        $user->save();
+            
+        //$user->update($request->all());
+       
+        return redirect()->route('user.edit', $user->id)
+            ->with('status_success','User updated successfully');
     }
 
     /**

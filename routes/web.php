@@ -24,4 +24,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('/contacts','ContactController')->names('contact');
 
-/* Route::resource('/updateuser'.'UserController')->names('user'); */
+Route::resource('/user', 'UserController',['except'=>['create','store']])->names('user');
